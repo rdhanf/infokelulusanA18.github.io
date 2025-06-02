@@ -204,3 +204,14 @@ button:hover {
     background-color: #f9f9f9;
     text-align: left;
 }
+
+info-tambahan {
+    margin-top: 25px;
+    font-size: 1.1em;
+    color: #0056b3; /* Warna biru untuk menarik perhatian */
+    font-weight: 500;
+    padding: 10px;
+    border: 1px solid #0056b3;
+    border-radius: 5px;
+    background-color: #e6f7ff; /* Latar belakang sedikit berbeda */
+}
