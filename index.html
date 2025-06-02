@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengumuman Kelulusan</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="welcome-page" id="welcomePage">
+    <h1>PENGUMUMAN KELULUSAN SISWA MTS ATTAQWA 18 <br> TAHUN AJARAN 2024/2025</h1>
+    <div class="sambutan">
+      <p>
+        Assalamualaikum Warahmatullahi Wabarakatuh,<br><br>
+        Segala puji bagi Allah SWT atas limpahan rahmat dan karunia-Nya, serta shalawat dan salam semoga tercurah kepada Nabi Muhammad SAW.
+        Dengan mengucap syukur ke hadirat Allah SWT, kami sampaikan selamat kepada seluruh siswa MTS Attaqwa 18 yang telah menyelesaikan pendidikan tahun ajaran 2024/2025.
+        <br><br>
+        Pengumuman ini merupakan hasil dari proses panjang pembelajaran, evaluasi, dan penilaian yang objektif oleh seluruh guru. Kami harap hasil ini dapat menjadi motivasi untuk melangkah ke jenjang yang lebih tinggi.
+        <br><br>
+        Semoga ilmu yang diperoleh membawa manfaat, dan kalian menjadi generasi berakhlak mulia serta berkontribusi positif untuk masyarakat dan bangsa.
+        <br><br>
+        Wassalamualaikum Warahmatullahi Wabarakatuh.<br><br>
+        <strong>Drs. H. Asep Ahmad, M.Ed<br>Kepala Madrasah</strong>
+      </p>
+      <button onclick="showForm()">Lanjut ke Pencarian Kelulusan</button>
+    </div>
+  </div>
+
+  <div class="main-page hidden" id="mainPage">
+    <h2>Cek Kelulusan</h2>
+    <input type="text" id="nisnInput" placeholder="Masukkan NISN" />
+    <button onclick="checkGraduation()">Cek</button>
+    <div id="result"></div>
+  </div>
+
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
