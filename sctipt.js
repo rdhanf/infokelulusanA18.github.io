@@ -3,97 +3,55 @@ function showForm() {
   document.getElementById("mainPage").classList.remove("hidden");
 }
 
-async function checkGraduation() {
+const studentData = [
+  { NISN: "3105144296", Nama: "AHMAD ALFARIZIH", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0104308889", Nama: "AHMAD ALIM RIADIL HAQ", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3104507783", Nama: "AHMAD AUFA RIZKI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0081862335", Nama: "AHMAD NURRIKO", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3116982572", Nama: "ANDINI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3097193175", Nama: "ARZIDAN AKBAR", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0091532739", Nama: "AYUNG WIRA GUNA", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3100039672", Nama: "AZAM AL FAZRI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3092797728", Nama: "DESUWITA MAHARANI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3102569577", Nama: "FATIHATUL MUFLIHA", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0094453486", Nama: "FIORENZA RAMADHANI ANDARI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3096638319", Nama: "HANAFI FIRMANSYAH", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0094864142", Nama: "IRZI MUHAMMAD FADHEEL", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3090424970", Nama: "M.HAIKAL", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3088408717", Nama: "MAMDUH MU AFA", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3091333840", Nama: "MARWAH", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0083380183", Nama: "MUHAMAD ADJI TRISETIAWAN", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3097179782", Nama: "MUHAMAD ZIDAN RISQI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3085348924", Nama: "MUHAMMAD HAQINNAZILI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0107921063", Nama: "MUHAMMAD RASYID", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0099336323", Nama: "RADITHIYA ACHMADIANSYAH", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0097776733", Nama: "RAMDAN AL HAFIZ", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0097776583", Nama: "RASYA PUTRA", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0102096429", Nama: "RATU ZAHROTUNNURUSSYITA", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3095294402", Nama: "SAHWA MAILANI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0106527907", Nama: "SISKA AMELIA", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3073123416", Nama: "SULTAN MAULANA HASANUDIN", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3107736635", Nama: "SYARIF HIDAYATULLOH", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "3103200902", Nama: "WINDI AULIA", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" },
+  { NISN: "0084721282", Nama: "ZASKIA AURA RAHMADHANI", Kelas: "IX", Status: "LULUS", KETERANGAN: "Selamat atas kelulusan Anda!" }
+];
+
+function checkGraduation() {
   const nisn = document.getElementById("nisnInput").value.trim();
   const resultDiv = document.getElementById("result");
-  resultDiv.innerHTML = "Memuat data...";
 
-  try {
-    const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTWwxJ6B0f7cPd8YPeXxJZtFzW5JEH5RM76uhLj0tavh6yPRN_wlqByU_FV0SuyD6D526qpmLTWTgNl/pub?output=csv');
-    const data = await response.text();
-    const rows = data.split("\n").map(row => row.split(","));
-    const headers = rows[0];
-    const nisnIndex = headers.indexOf("NISN");
+  const siswa = studentData.find(s => s.NISN === nisn);
 
-    const found = rows.find((row, index) => index > 0 && row[nisnIndex].trim() === nisn);
-
-    if (found) {
-      const name = found[headers.indexOf("Nama")];
-      const nisn = found[headers.indexOf("NISN")];
-      const kelas = found[headers.indexOf("Kelas")];
-      const status = found[headers.indexOf("Status")];
-      const keterangan = found[headers.indexOf("Keterangan")];
-
-      resultDiv.innerHTML = `
-        <p><strong>Nama:</strong> ${name}</p>
-        <p><strong>NISN:</strong> ${nisn}</p>
-        <p><strong>Kelas:</strong> ${kelas}</p>
-        <p><strong>Status:</strong> ${status}</p>
-        <p><strong>Keterangan:</strong> ${keterangan}</p>
-      `;
-
-      startConfetti();
-      setTimeout(stopConfetti, 5000);
-    } else {
-      resultDiv.innerHTML = "<p style='color:red;'>Data tidak ditemukan. Periksa kembali NISN Anda.</p>";
+  if (siswa) {
+    let output = "<div class='result-box'>";
+    for (const key in siswa) {
+      output += `<p><strong>${key}:</strong> ${siswa[key]}</p>`;
     }
-  } catch (err) {
-    resultDiv.innerHTML = "<p style='color:red;'>Gagal memuat data. Silakan coba lagi.</p>";
+    output += "</div>";
+    resultDiv.innerHTML = output;
+    startConfetti();
+    setTimeout(stopConfetti, 5000);
+  } else {
+    resultDiv.innerHTML = "<p style='color:red;'>Data tidak ditemukan. Periksa kembali NISN Anda.</p>";
   }
-}
-
-// 🎉 Konfeti (simple confetti using canvas)
-const canvas = document.getElementById('confettiCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let confetti = [];
-
-function createConfetti() {
-  for (let i = 0; i < 100; i++) {
-    confetti.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
-      r: Math.random() * 6 + 4,
-      d: Math.random() * 10 + 10,
-      color: `hsl(${Math.random() * 360}, 100%, 60%)`,
-      tilt: Math.random() * 10 - 10
-    });
-  }
-}
-
-function drawConfetti() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  confetti.forEach((c, i) => {
-    ctx.beginPath();
-    ctx.fillStyle = c.color;
-    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2, false);
-    ctx.fill();
-    c.y += c.d * 0.3;
-    c.x += Math.sin(c.tilt) * 2;
-
-    if (c.y > canvas.height) {
-      confetti[i] = {
-        x: Math.random() * canvas.width,
-        y: -10,
-        r: c.r,
-        d: c.d,
-        color: c.color,
-        tilt: c.tilt
-      };
-    }
-  });
-}
-
-let animationId;
-function startConfetti() {
-  createConfetti();
-  animationId = setInterval(drawConfetti, 30);
-}
-
-function stopConfetti() {
-  clearInterval(animationId);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  confetti = [];
 }
